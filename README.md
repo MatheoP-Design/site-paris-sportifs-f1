@@ -5,6 +5,22 @@ Application complète de paris F1 comprenant :
 - un front-end React/Vite (directory racine)
 - un back-end Django/DRF (`backend/`) exposant toutes les API métier
 
+## 🚀 Clonage et Installation
+
+```bash
+# Cloner le dépôt
+git clone <URL_DU_DEPOT>
+cd Site-Web-Paris-Sportifs-F1
+
+# Installation automatique
+npm run setup
+
+# Démarrer les serveurs
+npm start
+```
+
+Voir [GIT-SETUP.md](GIT-SETUP.md) pour les instructions complètes de configuration Git.
+
 ## Prérequis
 
 - Node.js 18+
