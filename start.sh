@@ -15,8 +15,11 @@ NC='\033[0m' # No Color
 
 echo -e "${BLUE}🚀 Démarrage du site F1...${NC}\n"
 
-# Mode debug (décommenter pour activer)
-# set -x
+# Afficher des informations de debug si DEBUG=1
+if [ "${DEBUG:-0}" = "1" ]; then
+    set -x
+    echo -e "${YELLOW}🐛 Mode debug activé${NC}\n"
+fi
 
 # Fonction pour vérifier si un port est disponible
 check_port() {
