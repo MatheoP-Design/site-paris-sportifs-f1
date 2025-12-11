@@ -132,7 +132,23 @@ python manage.py migrate --noinput || {
     echo -e "${YELLOW}💡 Vérifiez les logs ci-dessus pour plus de détails${NC}"
     exit 1
 }
-echo -e "${GREEN}✓ Migrations à jour${NC}\n"
+echo -e "${GREEN}✓ Migrations à jour${NC}"
+
+# Remplir la base de données si elle est vide
+echo -e "${BLUE}Vérification de la base de données...${NC}"
+RACE_COUNT=$(python -c "import os, django; os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings'); django.setup(); from api.models import Race; print(Race.objects.count())" 2>/dev/null || echo "0")
+
+if [ "$RACE_COUNT" = "0" ]; then
+    echo -e "${YELLOW}⚠️  La base de données est vide. Peuplement en cours...${NC}"
+    if python populate_db.py 2>&1; then
+        echo -e "${GREEN}✓ Base de données remplie avec les données de démo${NC}"
+    else
+        echo -e "${YELLOW}⚠️  Erreur lors du peuplement, continuation...${NC}"
+    fi
+else
+    echo -e "${GREEN}✓ Base de données contient déjà $RACE_COUNT course(s)${NC}"
+fi
+echo ""
 
 # Vérifier le port
 if ! check_port 8000; then
