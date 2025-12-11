@@ -3,7 +3,8 @@
 # Script de démarrage pour le site F1
 # Lance Django et Vite en parallèle
 
-set -e
+# Ne pas quitter immédiatement en cas d'erreur pour mieux les gérer
+set -o pipefail
 
 # Couleurs pour les messages
 GREEN='\033[0;32m'
@@ -13,6 +14,9 @@ RED='\033[0;31m'
 NC='\033[0m' # No Color
 
 echo -e "${BLUE}🚀 Démarrage du site F1...${NC}\n"
+
+# Mode debug (décommenter pour activer)
+# set -x
 
 # Fonction pour vérifier si un port est disponible
 check_port() {
@@ -27,7 +31,13 @@ check_port() {
 # Fonction pour vérifier la version de Python
 check_python_version() {
     local python_cmd="$1"
-    local version=$($python_cmd -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')" 2>/dev/null || echo "0.0")
+    # Utiliser une syntaxe compatible avec toutes les versions de Python
+    local version=$($python_cmd -c "import sys; print('{}.{}'.format(sys.version_info.major, sys.version_info.minor))" 2>/dev/null || echo "0.0")
+    
+    if [ "$version" = "0.0" ]; then
+        return 1
+    fi
+    
     local major=$(echo $version | cut -d. -f1)
     local minor=$(echo $version | cut -d. -f2)
     
@@ -55,18 +65,21 @@ find_python() {
 setup_venv() {
     local backend_dir="$1"
     
+    echo -e "${BLUE}Recherche d'un Python compatible (3.10+)...${NC}"
+    
     # Trouver un Python compatible
     PYTHON_CMD=$(find_python)
-    if [ -z "$PYTHON_CMD" ]; then
+    if [ -z "$PYTHON_CMD" ] || [ ! -n "$PYTHON_CMD" ]; then
         echo -e "${RED}❌ Python 3.10 ou supérieur est requis mais n'a pas été trouvé.${NC}"
         echo -e "${YELLOW}💡 Veuillez installer Python 3.10, 3.11 ou 3.12${NC}"
         echo -e "${YELLOW}   Sur macOS: brew install python@3.11${NC}"
         echo -e "${YELLOW}   Sur Linux: sudo apt install python3.11${NC}"
-        exit 1
+        echo -e "${YELLOW}   Vérifiez avec: python3 --version${NC}"
+        return 1
     fi
     
-    local python_version=$($PYTHON_CMD --version 2>&1 | awk '{print $2}')
-    echo -e "${GREEN}✓ Python $python_version trouvé${NC}"
+    local python_version=$($PYTHON_CMD --version 2>&1 | awk '{print $2}' || echo "inconnue")
+    echo -e "${GREEN}✓ Python $python_version trouvé ($PYTHON_CMD)${NC}"
     
     # Vérifier si le venv existe et est valide
     local venv_needs_recreate=0
@@ -102,24 +115,32 @@ setup_venv() {
     
     # Mettre à jour pip
     echo -e "${BLUE}Mise à jour de pip...${NC}"
-    "$backend_dir/.venv/bin/pip" install --quiet --upgrade pip || {
-        echo -e "${YELLOW}⚠️  Impossible de mettre à jour pip, continuation...${NC}"
-    }
+    if ! "$backend_dir/.venv/bin/pip" install --quiet --upgrade pip 2>/dev/null; then
+        echo -e "${YELLOW}⚠️  Impossible de mettre à jour pip, tentative avec verbose...${NC}"
+        "$backend_dir/.venv/bin/pip" install --upgrade pip || {
+            echo -e "${YELLOW}⚠️  Échec de la mise à jour de pip, continuation...${NC}"
+        }
+    fi
     
     # Vérifier si Django est installé avec la bonne version
-    local django_version=$("$backend_dir/.venv/bin/python" -c "import django; print(django.__version__)" 2>/dev/null || echo "")
+    echo -e "${BLUE}Vérification de Django...${NC}"
+    local django_version=""
+    if [ -f "$backend_dir/.venv/bin/python" ]; then
+        django_version=$("$backend_dir/.venv/bin/python" -c "import django; print(django.__version__)" 2>/dev/null || echo "")
+    fi
     local required_version="5.1.2"
     
     if [ -z "$django_version" ] || [ "$django_version" != "$required_version" ]; then
         echo -e "${YELLOW}⚠️  Django n'est pas installé ou la version est incorrecte (trouvé: ${django_version:-none}, requis: $required_version)${NC}"
         echo -e "${BLUE}Installation des dépendances Python...${NC}"
         cd "$backend_dir"
-        .venv/bin/pip install --quiet -r requirements.txt || {
+        if ! .venv/bin/pip install -r requirements.txt; then
             echo -e "${RED}❌ Erreur lors de l'installation des dépendances${NC}"
             echo -e "${YELLOW}💡 Essayez de mettre à jour pip: .venv/bin/pip install --upgrade pip${NC}"
+            echo -e "${YELLOW}💡 Vérifiez que vous avez Python 3.10+ : $PYTHON_CMD --version${NC}"
             cd ..
-            exit 1
-        }
+            return 1
+        fi
         echo -e "${GREEN}✓ Dépendances Python installées${NC}"
         cd ..
     else
@@ -134,7 +155,11 @@ if [ ! -f "package.json" ]; then
 fi
 
 # Préparer le venv
-setup_venv "backend"
+echo -e "${BLUE}Configuration de l'environnement Python...${NC}"
+if ! setup_venv "backend"; then
+    echo -e "${RED}❌ Impossible de préparer l'environnement Python${NC}"
+    exit 1
+fi
 
 # Vérifier si node_modules existe
 if [ ! -d "node_modules" ]; then
@@ -147,12 +172,18 @@ fi
 echo -e "${BLUE}Vérification des migrations Django...${NC}"
 # Utiliser le Python du venv directement
 cd backend
-.venv/bin/python manage.py migrate --noinput || {
+if [ ! -f ".venv/bin/python" ]; then
+    echo -e "${RED}❌ Le venv Python n'existe pas ou est corrompu${NC}"
+    cd ..
+    exit 1
+fi
+
+if ! .venv/bin/python manage.py migrate --noinput 2>&1; then
     echo -e "${RED}❌ Erreur lors de l'application des migrations${NC}"
     echo -e "${YELLOW}💡 Vérifiez les logs ci-dessus pour plus de détails${NC}"
     cd ..
     exit 1
-}
+fi
 echo -e "${GREEN}✓ Migrations à jour${NC}"
 cd ..
 
