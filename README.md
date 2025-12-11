@@ -19,6 +19,18 @@ npm run setup
 npm start
 ```
 
+### 🔍 Diagnostic en cas de problème
+
+Si `npm start` ne fonctionne pas ou s'arrête sans message :
+
+```bash
+# Lancer le diagnostic
+./test-setup.sh
+
+# Ou avec mode debug
+DEBUG=1 npm start
+```
+
 Voir [GIT-SETUP.md](GIT-SETUP.md) pour les instructions complètes de configuration Git.
 
 ## Prérequis
