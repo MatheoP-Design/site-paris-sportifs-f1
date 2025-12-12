@@ -27,7 +27,8 @@ check_python_version() {
     local major=$(echo $version | cut -d. -f1)
     local minor=$(echo $version | cut -d. -f2)
     
-    if [ "$major" -lt 3 ] || ([ "$major" -eq 3 ] && [ "$minor" -lt 10 ]); then
+    # Python 3.10 à 3.13 sont supportés (exclure 3.14+ à cause de problèmes de compatibilité avec Django)
+    if [ "$major" -lt 3 ] || ([ "$major" -eq 3 ] && [ "$minor" -lt 10 ]) || ([ "$major" -eq 3 ] && [ "$minor" -ge 14 ]); then
         return 1
     fi
     return 0
@@ -35,8 +36,8 @@ check_python_version() {
 
 # Fonction pour trouver un Python compatible
 find_python() {
-    # Essayer python3.12, python3.11, python3.10, puis python3
-    for py in python3.12 python3.11 python3.10 python3; do
+    # Privilégier Python 3.12 et 3.13 (éviter 3.14+ à cause de problèmes de compatibilité)
+    for py in python3.12 python3.13 python3.11 python3.10 python3; do
         if command -v "$py" &> /dev/null; then
             if check_python_version "$py"; then
                 echo "$py"
@@ -52,10 +53,11 @@ setup_venv() {
     # Trouver un Python compatible
     PYTHON_CMD=$(find_python)
     if [ -z "$PYTHON_CMD" ]; then
-        echo -e "${RED}❌ Python 3.10 ou supérieur est requis mais n'a pas été trouvé.${NC}"
-        echo -e "${YELLOW}💡 Veuillez installer Python 3.10, 3.11 ou 3.12${NC}"
-        echo -e "${YELLOW}   Sur macOS: brew install python@3.11${NC}"
-        echo -e "${YELLOW}   Sur Linux: sudo apt install python3.11${NC}"
+        echo -e "${RED}❌ Python 3.10 à 3.13 est requis mais n'a pas été trouvé.${NC}"
+        echo -e "${YELLOW}💡 Veuillez installer Python 3.12 ou 3.13 (recommandé)${NC}"
+        echo -e "${YELLOW}   Sur macOS: brew install python@3.12${NC}"
+        echo -e "${YELLOW}   Sur Linux: sudo apt install python3.12${NC}"
+        echo -e "${YELLOW}⚠️  Python 3.14+ n'est pas supporté à cause de problèmes de compatibilité avec Django${NC}"
         exit 1
     fi
     
@@ -99,7 +101,7 @@ setup_venv() {
     
     # Vérifier si Django est installé avec la bonne version
     local django_version=$(.venv/bin/python -c "import django; print(django.__version__)" 2>/dev/null || echo "")
-    local required_version="5.1.2"
+    local required_version="5.1.3"
     
     if [ -z "$django_version" ] || [ "$django_version" != "$required_version" ]; then
         echo -e "${YELLOW}⚠️  Django n'est pas installé ou la version est incorrecte (trouvé: ${django_version:-none}, requis: $required_version)${NC}"

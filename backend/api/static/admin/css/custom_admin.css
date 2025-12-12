@@ -1,220 +1,410 @@
-/* Thème personnalisé pour l'admin Django - Style F1 */
-
-/* Variables de couleurs du thème F1 */
+/* Style simple pour l'admin Django - Thème F1 */
 :root {
     --f1-primary: #dc0000;
-    --f1-primary-hover: #b30000;
-    --f1-background: #0a0a0a;
-    --f1-card: #151515;
-    --f1-foreground: #e5e5e5;
-    --f1-secondary: #2a2a2a;
-    --f1-muted: #1f1f1f;
-    --f1-border: rgba(192, 192, 192, 0.15);
-    --f1-accent: #c0c0c0;
+    --f1-background: #000000;
+    --f1-card: #000000;
+    --f1-foreground: #dc0000;
+    --f1-border: rgba(220, 0, 0, 0.3);
+    --f1-accent: #dc0000;
+    --f1-muted: #000000;
+    --f1-text-on-red: #ffffff;
 }
 
-/* Override du body */
+/* Règle globale pour remplacer TOUS les fonds gris par du noir */
+* {
+    /* Remplacement de toutes les couleurs grises en fond noir */
+}
+
+/* Surcharge de toutes les variables CSS grises de Django */
+:root,
+html[data-theme="light"],
+html[data-theme="dark"] {
+    --body-bg: var(--f1-background) !important;
+    --darkened-bg: var(--f1-background) !important;
+    --selected-bg: var(--f1-background) !important;
+    --selected-row: var(--f1-muted) !important;
+    --hairline-color: var(--f1-border) !important;
+    --border-color: var(--f1-border) !important;
+    --breadcrumbs-bg: var(--f1-background) !important;
+    --breadcrumbs-fg: var(--f1-foreground) !important;
+    --breadcrumbs-link-fg: var(--f1-foreground) !important;
+}
+
+/* Fond général */
 body {
     background-color: var(--f1-background) !important;
     color: var(--f1-foreground) !important;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
-/* Header de l'admin */
-#header {
-    background: linear-gradient(135deg, var(--f1-primary) 0%, #b30000 100%) !important;
-    color: #ffffff !important;
-    border-bottom: 2px solid var(--f1-primary) !important;
-    box-shadow: 0 2px 8px rgba(220, 0, 0, 0.3) !important;
-}
-
-#header a:link,
-#header a:visited {
-    color: #ffffff !important;
-}
-
-#header a:hover {
-    color: var(--f1-accent) !important;
-}
-
-/* Branding */
-#branding h1,
-#branding h1 a:link,
-#branding h1 a:visited {
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Navigation */
-#user-tools {
-    color: #ffffff !important;
-}
-
-#user-tools a {
-    color: #ffffff !important;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-}
-
-#user-tools a:hover {
-    border-bottom-color: var(--f1-accent);
-}
-
-/* Sidebar */
-#content-related {
-    background-color: var(--f1-card) !important;
-    border: 1px solid var(--f1-border) !important;
-    border-radius: 8px;
-}
-
-#content-related h3 {
-    background-color: var(--f1-secondary) !important;
+/* Remplacement de tous les fonds gris par du noir avec texte rouge */
+/* Règles globales pour forcer le remplacement */
+[style*="background"][style*="gray"],
+[style*="background"][style*="grey"],
+[style*="background-color"][style*="gray"],
+[style*="background-color"][style*="grey"] {
+    background-color: var(--f1-background) !important;
     color: var(--f1-foreground) !important;
+}
+
+/* Remplacement de toutes les variables CSS grises de Django */
+:root,
+html[data-theme="light"] {
+    --body-bg: var(--f1-background) !important;
+    --darkened-bg: var(--f1-background) !important;
+    --selected-bg: var(--f1-background) !important;
+    --hairline-color: var(--f1-border) !important;
+    --border-color: var(--f1-border) !important;
+}
+
+/* Remplacement de tous les fonds gris par du noir - règles globales */
+* {
+    /* Surcharge pour tous les éléments avec fond gris */
+}
+
+/* Tous les éléments avec des classes ou IDs contenant des fonds gris */
+[class*="bg-gray"],
+[class*="bg-grey"],
+[class*="background-gray"],
+[class*="background-grey"],
+[id*="bg-gray"],
+[id*="bg-grey"] {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des couleurs grises spécifiques */
+[style*="#e4e4e4"],
+[style*="#f8f8f8"],
+[style*="#e8e8e8"],
+[style*="#f7f7f7"],
+[style*="#eeeeee"],
+[style*="#cccccc"],
+[style*="#f5f5f5"],
+[style*="#e0e0e0"],
+[style*="#d0d0d0"],
+[style*="#c0c0c0"],
+[style*="#b0b0b0"],
+[style*="#a0a0a0"],
+[style*="#999999"],
+[style*="#888888"],
+[style*="#777777"],
+[style*="#666666"],
+[style*="#555555"],
+[style*="#444444"],
+[style*="#333333"],
+[style*="#222222"] {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Éléments avec fond gris -> fond noir + texte rouge */
+.module,
+#changelist-filter,
+#changelist-search,
+#changelist-actions,
+fieldset,
+.submit-row,
+.dashboard .module,
+.results,
+#result_list,
+#changelist,
+.changelist,
+.content,
+.main-content,
+.admin-content,
+#content-main,
+.content-main {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Tous les divs et sections */
+div,
+section,
+article,
+aside,
+header,
+footer,
+main,
+nav {
+    /* Surcharge pour les éléments avec fond gris */
+}
+
+/* Surcharge spécifique pour les éléments Django admin */
+#container,
+#content,
+#main,
+.main,
+.container,
+.content-wrapper,
+.wrapper {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Tableaux - fond gris -> noir, texte rouge */
+.module table thead th {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+    border-bottom: 2px solid var(--f1-border) !important;
+}
+
+.module table tbody td {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+.module table tbody tr:hover {
+    background-color: var(--f1-muted) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Formulaires - fond gris -> noir, texte rouge */
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="number"],
+.form-row input[type="date"],
+.form-row input[type="datetime"],
+.form-row select,
+.form-row textarea {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Fond rouge -> texte blanc */
+.button,
+input[type="submit"],
+.submit-row input[type="submit"],
+.object-tools a,
+.paginator .this-page,
+.select2-container--default .select2-results__option--highlighted[aria-selected],
+.select2-container--default .select2-results__option[aria-selected="true"],
+.ui-autocomplete .ui-menu-item.ui-state-active a,
+.calendar .selected a,
+.calendar a:hover,
+.timepicker a:hover,
+.actions button,
+.deletelink,
+.delete-button,
+a.deletelink,
+button.deletelink,
+input[type="submit"].deletelink {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+.button:hover,
+input[type="submit"]:hover,
+.submit-row input[type="submit"]:hover,
+.object-tools a:hover,
+.actions button:hover,
+.deletelink:hover,
+.delete-button:hover,
+a.deletelink:hover,
+button.deletelink:hover,
+input[type="submit"].deletelink:hover {
+    background-color: #b80000 !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Header - fond noir, texte rouge */
+#header {
+    background-color: var(--f1-background) !important;
     border-bottom: 1px solid var(--f1-border) !important;
+    box-shadow: 0 2px 8px rgba(220, 0, 0, 0.3) !important;
+    color: var(--f1-foreground) !important;
 }
 
-#content-related .module {
-    background-color: transparent !important;
+#header #site-name a {
+    color: var(--f1-foreground) !important;
+    font-weight: 600 !important;
 }
 
-#content-related a {
+#header #site-name a:hover {
     color: var(--f1-primary) !important;
 }
 
-#content-related a:hover {
-    color: var(--f1-primary-hover) !important;
+#header #user-tools a {
+    color: var(--f1-foreground) !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
 }
 
-/* Contenu principal */
+#header #user-tools a:hover {
+    background-color: var(--f1-muted) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Navigation sidebar - fond noir, texte rouge */
+#nav-sidebar {
+    background-color: var(--f1-background) !important;
+    border-right: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+#nav-sidebar .module {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+#nav-sidebar .module h2 {
+    color: var(--f1-foreground) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+    padding-bottom: 8px !important;
+}
+
+#nav-sidebar .module ul li a {
+    color: var(--f1-foreground) !important;
+    padding: 8px 12px !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
+}
+
+#nav-sidebar .module ul li a:hover {
+    background-color: var(--f1-muted) !important;
+    color: var(--f1-foreground) !important;
+}
+
+#nav-sidebar .module ul li.selected a {
+    background-color: var(--f1-muted) !important;
+    color: var(--f1-foreground) !important;
+    border-left: 3px solid var(--f1-primary) !important;
+}
+
+/* Contenu principal - fond noir, texte rouge */
 #content {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Modules et cartes - fond noir, texte rouge */
+.module {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(220, 0, 0, 0.2) !important;
+    margin-bottom: 20px !important;
+    color: var(--f1-foreground) !important;
+}
+
+.module h2 {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+    padding: 12px 16px !important;
+}
+
+.module h3 {
+    color: var(--f1-foreground) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+}
+
+/* Tableaux - fond noir, texte rouge */
+.module table {
     background-color: var(--f1-background) !important;
 }
 
-.module {
-    background-color: var(--f1-card) !important;
-    border: 1px solid var(--f1-border) !important;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.module h2,
-.module caption {
-    background: linear-gradient(135deg, var(--f1-secondary) 0%, var(--f1-muted) 100%) !important;
+.module table thead th {
+    background-color: var(--f1-background) !important;
     color: var(--f1-foreground) !important;
-    border-bottom: 2px solid var(--f1-primary) !important;
-    font-weight: 600;
+    border-bottom: 2px solid var(--f1-border) !important;
+    padding: 12px !important;
 }
 
-.module table {
-    background-color: transparent !important;
-}
-
-.module th {
-    background-color: var(--f1-secondary) !important;
+.module table tbody td {
+    background-color: var(--f1-background) !important;
     color: var(--f1-foreground) !important;
     border-bottom: 1px solid var(--f1-border) !important;
+    padding: 10px 12px !important;
 }
 
-.module td {
-    border-bottom: 1px solid var(--f1-border) !important;
-    color: var(--f1-foreground) !important;
+.module table tbody tr {
+    background-color: var(--f1-background) !important;
 }
 
-.module tr:hover {
+.module table tbody tr:hover {
     background-color: var(--f1-muted) !important;
+    color: var(--f1-foreground) !important;
 }
 
 /* Formulaires */
 .form-row {
     border-bottom: 1px solid var(--f1-border) !important;
+    padding: 12px 0 !important;
 }
 
-label {
+.form-row label {
     color: var(--f1-foreground) !important;
-    font-weight: 500;
+    font-weight: 500 !important;
 }
 
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="number"],
-input[type="date"],
-input[type="time"],
-select,
-textarea {
-    background-color: var(--f1-card) !important;
+.form-row input[type="text"],
+.form-row input[type="email"],
+.form-row input[type="number"],
+.form-row input[type="date"],
+.form-row input[type="datetime"],
+.form-row select,
+.form-row textarea {
+    background-color: var(--f1-background) !important;
     border: 1px solid var(--f1-border) !important;
     color: var(--f1-foreground) !important;
-    border-radius: 4px;
-    padding: 8px 12px;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    border-radius: 4px !important;
+    padding: 8px 12px !important;
+    transition: all 0.2s ease !important;
 }
 
-input[type="text"]:focus,
-input[type="password"]:focus,
-input[type="email"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
-input[type="time"]:focus,
-select:focus,
-textarea:focus {
+.form-row input[type="text"]:focus,
+.form-row input[type="email"]:focus,
+.form-row input[type="number"]:focus,
+.form-row input[type="date"]:focus,
+.form-row input[type="datetime"]:focus,
+.form-row select:focus,
+.form-row textarea:focus {
     border-color: var(--f1-primary) !important;
+    outline: none !important;
     box-shadow: 0 0 0 2px rgba(220, 0, 0, 0.2) !important;
-    outline: none;
 }
 
-/* Boutons */
+/* Boutons - fond rouge, texte blanc */
 .button,
 input[type="submit"],
-.submit-row input {
-    background: linear-gradient(135deg, var(--f1-primary) 0%, #b30000 100%) !important;
-    color: #ffffff !important;
+.submit-row input[type="submit"],
+.object-tools a {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
     border: none !important;
-    border-radius: 4px;
-    padding: 10px 20px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    transition: all 0.2s;
-    box-shadow: 0 2px 4px rgba(220, 0, 0, 0.3);
+    border-radius: 4px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
 }
 
 .button:hover,
 input[type="submit"]:hover,
-.submit-row input:hover {
-    background: linear-gradient(135deg, #b30000 0%, #8f0000 100%) !important;
-    box-shadow: 0 4px 8px rgba(220, 0, 0, 0.4);
-    transform: translateY(-1px);
+.submit-row input[type="submit"]:hover,
+.object-tools a:hover {
+    background-color: #b80000 !important;
+    color: var(--f1-text-on-red) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(220, 0, 0, 0.3) !important;
 }
 
 .button.default,
-input[type="submit"].default,
-.submit-row input.default {
-    background: linear-gradient(135deg, var(--f1-primary) 0%, #b30000 100%) !important;
+input[type="submit"].default {
+    background-color: var(--f1-primary) !important;
 }
 
-/* Boutons secondaires */
-.button-secondary,
-a.button {
-    background-color: var(--f1-secondary) !important;
-    color: var(--f1-foreground) !important;
-    border: 1px solid var(--f1-border) !important;
-}
-
-.button-secondary:hover,
-a.button:hover {
-    background-color: var(--f1-muted) !important;
-    border-color: var(--f1-primary) !important;
-}
-
-/* Messages */
+/* Messages - fond noir, texte rouge */
 .messagelist li {
-    background-color: var(--f1-card) !important;
+    background-color: var(--f1-background) !important;
     border-left: 4px solid var(--f1-primary) !important;
     color: var(--f1-foreground) !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 12px 16px !important;
+    border-radius: 4px !important;
+    margin-bottom: 10px !important;
 }
 
 .messagelist li.success {
@@ -225,59 +415,12 @@ a.button:hover {
     border-left-color: var(--f1-primary) !important;
 }
 
-.messagelist li.warning {
-    border-left-color: #ffa500 !important;
-}
-
-.messagelist li.info {
-    border-left-color: #00d4ff !important;
-}
-
-/* Liens */
-a:link,
-a:visited {
-    color: var(--f1-primary) !important;
-}
-
-a:hover {
-    color: var(--f1-primary-hover) !important;
-}
-
-a:active {
-    color: #8f0000 !important;
-}
-
-/* Tableaux */
-thead th {
-    background-color: var(--f1-secondary) !important;
-    color: var(--f1-foreground) !important;
-    border-bottom: 2px solid var(--f1-primary) !important;
-}
-
-tbody tr {
-    background-color: var(--f1-card) !important;
-}
-
-tbody tr:hover {
-    background-color: var(--f1-muted) !important;
-}
-
-tbody td {
-    border-bottom: 1px solid var(--f1-border) !important;
-    color: var(--f1-foreground) !important;
-}
-
-/* Filtres */
+/* Filtres - fond noir, texte rouge */
 #changelist-filter {
-    background-color: var(--f1-card) !important;
+    background-color: var(--f1-background) !important;
     border: 1px solid var(--f1-border) !important;
-    border-radius: 8px;
-}
-
-#changelist-filter h2 {
-    background-color: var(--f1-secondary) !important;
+    border-radius: 8px !important;
     color: var(--f1-foreground) !important;
-    border-bottom: 1px solid var(--f1-border) !important;
 }
 
 #changelist-filter h3 {
@@ -289,70 +432,91 @@ tbody td {
     border-bottom: 1px solid var(--f1-border) !important;
 }
 
-#changelist-filter a {
+#changelist-filter li a {
+    color: var(--f1-foreground) !important;
+    padding: 8px 12px !important;
+    transition: all 0.2s ease !important;
+}
+
+#changelist-filter li a:hover,
+#changelist-filter li.selected a {
+    background-color: var(--f1-muted) !important;
     color: var(--f1-foreground) !important;
 }
 
-#changelist-filter a:hover {
-    color: var(--f1-primary) !important;
-    background-color: var(--f1-muted) !important;
-}
-
-#changelist-filter li.selected a {
-    color: var(--f1-primary) !important;
-    font-weight: 600;
-}
-
-/* Pagination */
-.paginator {
-    background-color: var(--f1-card) !important;
+/* Barre de recherche - fond noir, texte rouge */
+#changelist-search {
+    background-color: var(--f1-background) !important;
     border: 1px solid var(--f1-border) !important;
-    border-radius: 8px;
-    padding: 10px;
+    border-radius: 8px !important;
+    padding: 16px !important;
+    margin-bottom: 20px !important;
+    color: var(--f1-foreground) !important;
+}
+
+#changelist-search input[type="text"] {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+    border-radius: 4px !important;
+    padding: 8px 12px !important;
+}
+
+#changelist-search input[type="text"]:focus {
+    border-color: var(--f1-primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(220, 0, 0, 0.2) !important;
+}
+
+/* Actions - fond noir, texte rouge */
+#changelist-actions {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 8px !important;
+    padding: 12px 16px !important;
+    margin-bottom: 20px !important;
+    color: var(--f1-foreground) !important;
+}
+
+#changelist-actions select {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+    border-radius: 4px !important;
+    padding: 8px 12px !important;
+}
+
+/* Pagination - fond noir, texte rouge, page active rouge avec texte blanc */
+.paginator {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
 }
 
 .paginator a {
-    background-color: var(--f1-secondary) !important;
-    color: var(--f1-foreground) !important;
-    border: 1px solid var(--f1-border) !important;
-    border-radius: 4px;
-    padding: 6px 12px;
-    margin: 0 2px;
-    transition: all 0.2s;
+    background-color: var(--f1-background) !important;
+    color: var(--f1-primary) !important;
+    padding: 6px 12px !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease !important;
 }
 
 .paginator a:hover {
-    background-color: var(--f1-primary) !important;
-    color: #ffffff !important;
-    border-color: var(--f1-primary) !important;
+    background-color: var(--f1-muted) !important;
+    color: var(--f1-foreground) !important;
 }
 
 .paginator .this-page {
     background-color: var(--f1-primary) !important;
-    color: #ffffff !important;
-    border-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
 }
 
-/* Checkboxes et radio */
-input[type="checkbox"],
-input[type="radio"] {
-    accent-color: var(--f1-primary) !important;
-}
-
-/* Selects */
-select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23dc0000' d='M6 9L1 4h10z'/%3E%3C/svg%3E") !important;
-    background-repeat: no-repeat !important;
-    background-position: right 8px center !important;
-    padding-right: 30px !important;
-}
-
-/* Breadcrumbs */
+/* Breadcrumbs - fond noir, texte rouge */
 .breadcrumbs {
-    background-color: var(--f1-card) !important;
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
     border-bottom: 1px solid var(--f1-border) !important;
-    padding: 10px 15px;
-    border-radius: 8px 8px 0 0;
+    padding-bottom: 10px !important;
+    margin-bottom: 20px !important;
 }
 
 .breadcrumbs a {
@@ -360,71 +524,652 @@ select {
 }
 
 .breadcrumbs a:hover {
-    color: var(--f1-primary-hover) !important;
+    text-decoration: underline !important;
 }
 
-/* Actions */
-#changelist-actions {
-    background-color: var(--f1-card) !important;
+/* Fieldsets - fond noir, texte rouge */
+fieldset {
+    background-color: var(--f1-background) !important;
     border: 1px solid var(--f1-border) !important;
-    border-radius: 8px;
-    padding: 10px;
+    border-radius: 8px !important;
+    padding: 16px !important;
+    margin-bottom: 20px !important;
+    color: var(--f1-foreground) !important;
 }
 
-/* Erreurs de formulaire */
-.errorlist {
-    background-color: rgba(220, 0, 0, 0.1) !important;
-    border-left: 4px solid var(--f1-primary) !important;
+fieldset legend {
+    color: var(--f1-foreground) !important;
+    font-weight: 600 !important;
+    padding: 0 12px !important;
+}
+
+/* Submit row - fond noir, texte rouge */
+.submit-row {
+    background-color: var(--f1-background) !important;
+    border-top: 1px solid var(--f1-border) !important;
+    padding: 16px !important;
+    margin-top: 20px !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Object tools - bouton Ajouter avec texte blanc */
+.object-tools {
+    margin-bottom: 20px !important;
+}
+
+.object-tools a,
+.object-tools a:link,
+.object-tools a:visited {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+    border-radius: 4px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+.object-tools a:hover,
+.object-tools a:focus {
+    background-color: #b80000 !important;
+    color: var(--f1-text-on-red) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(220, 0, 0, 0.3) !important;
+}
+
+/* Bouton Supprimer - texte blanc */
+.deletelink,
+.delete-button,
+a.deletelink,
+button.deletelink,
+input[type="submit"].deletelink,
+.submit-row .deletelink,
+.deletelink-box a {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+    border: none !important;
+    border-radius: 4px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+.deletelink:hover,
+.delete-button:hover,
+a.deletelink:hover,
+button.deletelink:hover,
+input[type="submit"].deletelink:hover,
+.submit-row .deletelink:hover,
+.deletelink-box a:hover {
+    background-color: #b80000 !important;
+    color: var(--f1-text-on-red) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(220, 0, 0, 0.3) !important;
+}
+
+/* S'assurer que tous les boutons avec fond rouge ont du texte blanc */
+.button[style*="background"][style*="#dc0000"],
+.button[style*="background-color"][style*="#dc0000"],
+a[style*="background"][style*="#dc0000"],
+a[style*="background-color"][style*="#dc0000"],
+input[type="submit"][style*="background"][style*="#dc0000"],
+input[type="submit"][style*="background-color"][style*="#dc0000"],
+button[style*="background"][style*="#dc0000"],
+button[style*="background-color"][style*="#dc0000"] {
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Règles spécifiques pour les boutons "Ajouter" et "Supprimer" dans les formulaires */
+.addlink,
+.changelink,
+.deletelink,
+.viewlink,
+.historylink {
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Boutons dans les tableaux d'actions */
+.results a,
+.results .addlink,
+.results .changelink,
+.results .deletelink {
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Boutons dans les groupes inline */
+.inline-group .add-row a,
+.inline-related .add-row a {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+.inline-group .delete input,
+.inline-related .delete input {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Login page */
+.login #header,
+.login #content {
+    background-color: var(--f1-background) !important;
+}
+
+.login .form-row input {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Dashboard - fond noir, texte rouge */
+.dashboard .module {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+.dashboard .module table {
+    background-color: transparent !important;
+}
+
+/* Remplacement de toutes les couleurs bleues par du rouge F1 */
+/* Variables CSS Django - surcharge complète */
+html[data-theme="light"],
+:root {
+    --primary: var(--f1-primary) !important;
+    --secondary: #b80000 !important;
+    --link-fg: var(--f1-primary) !important;
+    --link-hover-color: #b80000 !important;
+    --link-selected-fg: var(--f1-primary) !important;
+    --breadcrumbs-link-fg: var(--f1-primary) !important;
+    --header-bg: var(--f1-background) !important;
+    --header-link-color: var(--f1-foreground) !important;
+    --button-bg: var(--f1-primary) !important;
+    --button-hover-bg: #b80000 !important;
+    --default-button-bg: var(--f1-primary) !important;
+    --default-button-hover-bg: #b80000 !important;
+}
+
+/* Tous les liens - remplacement du bleu */
+a,
+a:link,
+a:visited {
     color: var(--f1-primary) !important;
-    padding: 10px;
-    border-radius: 4px;
-    margin: 10px 0;
 }
 
-/* Help text */
-.help {
-    color: var(--f1-accent) !important;
-    font-size: 0.9em;
+a:hover,
+a:focus {
+    color: #b80000 !important;
 }
 
-/* Readonly fields */
-.readonly {
-    background-color: var(--f1-muted) !important;
-    color: var(--f1-accent) !important;
+/* Liens dans le header */
+#header a,
+#header a:link,
+#header a:visited {
+    color: var(--f1-foreground) !important;
 }
 
-/* Inline forms */
-.inline-group {
-    background-color: var(--f1-card) !important;
+#header a:hover {
+    color: var(--f1-primary) !important;
+}
+
+/* Liens dans les tableaux */
+.module table a,
+table a {
+    color: var(--f1-primary) !important;
+}
+
+.module table a:hover {
+    color: #b80000 !important;
+}
+
+/* Règles supplémentaires pour garantir fond rouge = texte blanc */
+[style*="background"][style*="#dc0000"],
+[style*="background"][style*="rgb(220, 0, 0)"],
+[style*="background-color"][style*="#dc0000"],
+[style*="background-color"][style*="rgb(220, 0, 0)"] {
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Règles supplémentaires pour garantir fond gris = fond noir + texte rouge */
+[style*="background"][style*="gray"],
+[style*="background"][style*="grey"],
+[style*="background-color"][style*="gray"],
+[style*="background-color"][style*="grey"],
+[style*="background"][style*="#e4e4e4"],
+[style*="background"][style*="#f8f8f8"],
+[style*="background"][style*="#e8e8e8"],
+[style*="background-color"][style*="#e4e4e4"],
+[style*="background-color"][style*="#f8f8f8"],
+[style*="background-color"][style*="#e8e8e8"] {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Select2 - fond rouge -> texte blanc, fond gris -> fond noir + texte rouge */
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: var(--f1-foreground) !important;
+}
+
+.select2-container--default .select2-selection--single {
+    background-color: var(--f1-background) !important;
+    border-color: var(--f1-border) !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--open .select2-selection--single {
+    border-color: var(--f1-primary) !important;
+}
+
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+.select2-container--default .select2-dropdown {
+    background-color: var(--f1-background) !important;
+    border-color: var(--f1-primary) !important;
+    color: var(--f1-foreground) !important;
+}
+
+.select2-container--default .select2-results__option {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des couleurs bleues spécifiques dans Select2 */
+.select2-container--default .select2-selection--single {
+    border-color: var(--f1-border) !important;
+}
+
+.select2-container--default .select2-selection--single:focus {
+    border-color: var(--f1-primary) !important;
+}
+
+/* Remplacement des couleurs hexadécimales bleues */
+[style*="#79aec8"],
+[style*="#417690"],
+[style*="#417893"],
+[style*="#5897fb"],
+[style*="#3875d7"],
+[style*="#81d4fa"],
+[style*="#4ac1f7"],
+[style*="#6f94c6"] {
+    color: var(--f1-primary) !important;
+}
+
+/* Surcharge pour dark mode */
+html[data-theme="dark"] {
+    --link-fg: var(--f1-primary) !important;
+    --link-hover-color: #b80000 !important;
+    --link-selected-fg: var(--f1-primary) !important;
+}
+
+/* Autocomplete - fond noir, texte rouge, hover rouge avec texte blanc */
+.ui-autocomplete {
+    background-color: var(--f1-background) !important;
     border: 1px solid var(--f1-border) !important;
-    border-radius: 8px;
+    color: var(--f1-foreground) !important;
+}
+
+.ui-autocomplete .ui-menu-item a {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+.ui-autocomplete .ui-menu-item a:hover,
+.ui-autocomplete .ui-menu-item.ui-state-active a {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Calendrier - fond noir, texte rouge, sélection rouge avec texte blanc */
+.calendarbox,
+.calendar {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+.calendar a {
+    color: var(--f1-primary) !important;
+}
+
+.calendar a:hover {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+.calendar .selected a {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Timepicker - fond noir, texte rouge, hover rouge avec texte blanc */
+.timepicker {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+.timepicker a {
+    color: var(--f1-primary) !important;
+}
+
+.timepicker a:hover {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Related widget wrapper */
+.related-widget-wrapper a {
+    color: var(--f1-primary) !important;
+}
+
+.related-widget-wrapper a:hover {
+    color: #b80000 !important;
+}
+
+/* Inline related - fond noir, texte rouge */
+.inline-group {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
 }
 
 .inline-group h2 {
-    background-color: var(--f1-secondary) !important;
+    background-color: var(--f1-background) !important;
     color: var(--f1-foreground) !important;
-    border-bottom: 1px solid var(--f1-border) !important;
 }
 
-/* Scrollbar personnalisée */
-::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+.inline-group .add-row a {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--f1-muted);
-    border-radius: 4px;
+.inline-group .add-row a:hover {
+    background-color: #b80000 !important;
+    color: var(--f1-text-on-red) !important;
 }
 
-::-webkit-scrollbar-thumb {
-    background: rgba(220, 0, 0, 0.3);
-    border-radius: 4px;
-    transition: background 0.2s;
+/* Actions - fond noir, texte rouge */
+.actions {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(220, 0, 0, 0.5);
+.actions select {
+    background-color: var(--f1-background) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+.actions button {
+    background-color: var(--f1-primary) !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+.actions button:hover {
+    background-color: #b80000 !important;
+    color: var(--f1-text-on-red) !important;
+}
+
+/* Help text - texte rouge */
+.help,
+.help-block {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Errors */
+.errorlist {
+    color: var(--f1-primary) !important;
+}
+
+.errorlist li {
+    color: var(--f1-primary) !important;
+}
+
+/* Required fields */
+.required {
+    color: var(--f1-primary) !important;
+}
+
+/* Remplacement des états et classes spécifiques avec fond gris */
+.selected,
+.active,
+.highlight,
+.hover,
+.focus,
+.disabled,
+.readonly,
+.required,
+.error,
+.warning,
+.info,
+.success {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement spécifique pour les éléments Django admin avec fond gris */
+#changelist-filter li.selected,
+#changelist-filter li.selected a,
+#changelist tbody tr.selected,
+tbody tr.selected,
+tr.selected td,
+tr.selected th,
+.selected-row,
+.selected-cell,
+.selected-item,
+#changelist-filter li,
+#changelist-filter ul,
+#changelist-filter,
+#changelist,
+.changelist-results,
+.results,
+#result_list,
+.result-list,
+.changelist-form,
+.form-row,
+.formset-row,
+.inline-group,
+.inline-related,
+.related-widget-wrapper,
+.selector,
+.selector-available,
+.selector-chosen,
+.selector-chooser,
+.selector-add,
+.selector-remove,
+.selector-chooseall,
+.selector-clearall {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec des classes Django spécifiques */
+.admin,
+.django-admin,
+.django-admin-content,
+.admin-content,
+.admin-main,
+.admin-sidebar,
+.admin-header,
+.admin-footer {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec var(--darkened-bg) et var(--selected-bg) */
+[style*="var(--darkened-bg)"],
+[style*="var(--selected-bg)"],
+[style*="--darkened-bg"],
+[style*="--selected-bg"] {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments utilisant les variables CSS de Django */
+* {
+    /* Surcharge globale pour toutes les variables grises */
+}
+
+/* Force le remplacement pour tous les éléments avec background gris */
+*[style*="background"][style*="#f8f8f8"],
+*[style*="background"][style*="#e4e4e4"],
+*[style*="background"][style*="#e8e8e8"],
+*[style*="background"][style*="#f7f7f7"],
+*[style*="background"][style*="#eeeeee"],
+*[style*="background-color"][style*="#f8f8f8"],
+*[style*="background-color"][style*="#e4e4e4"],
+*[style*="background-color"][style*="#e8e8e8"],
+*[style*="background-color"][style*="#f7f7f7"],
+*[style*="background-color"][style*="#eeeeee"] {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des lignes sélectionnées dans les tableaux */
+tr.selected,
+tr.active,
+tr.highlight,
+tbody tr.selected,
+tbody tr.active {
+    background-color: var(--f1-muted) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des cellules sélectionnées */
+td.selected,
+th.selected,
+.selected td,
+.selected th {
+    background-color: var(--f1-muted) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "row" */
+.row,
+.rows,
+.table-row,
+.list-row {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "cell" */
+.cell,
+.cells,
+.table-cell,
+.list-cell {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "item" */
+.item,
+.items,
+.list-item,
+.table-item {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "box" */
+.box,
+.boxes,
+.content-box,
+.info-box {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "panel" */
+.panel,
+.panels,
+.content-panel,
+.info-panel {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "card" */
+.card,
+.cards,
+.content-card,
+.info-card {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "block" */
+.block,
+.blocks,
+.content-block,
+.info-block {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "section" */
+.section,
+.sections,
+.content-section,
+.info-section {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "area" */
+.area,
+.areas,
+.content-area,
+.info-area {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "zone" */
+.zone,
+.zones,
+.content-zone,
+.info-zone {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "region" */
+.region,
+.regions,
+.content-region,
+.info-region {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "container" */
+.container,
+.containers,
+.content-container,
+.info-container {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Remplacement des éléments avec classe "wrapper" */
+.wrapper,
+.wrappers,
+.content-wrapper,
+.info-wrapper {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
 }
 
 /* Responsive */
@@ -433,12 +1178,8 @@ select {
         padding: 10px !important;
     }
     
-    #branding h1 {
-        font-size: 18px !important;
-    }
-    
     .module {
-        margin: 10px 0 !important;
+        margin-bottom: 15px !important;
     }
 }
 

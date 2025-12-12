@@ -1,14 +1,6 @@
 from django.contrib import admin
-from django.contrib.admin import AdminSite
 
 from .models import Bet, Driver, Race, RaceDriver, User
-
-
-# Personnalisation du site admin
-class F1AdminSite(AdminSite):
-    site_header = "🏎️ Administration F1"
-    site_title = "Administration F1"
-    index_title = "Panneau d'administration - Paris Sportifs F1"
 
 
 @admin.register(User)
@@ -48,6 +40,7 @@ class RaceAdmin(admin.ModelAdmin):
     list_filter = ('country', 'date')
     list_per_page = 25
     date_hierarchy = 'date'
+    readonly_fields = ('created_at', 'updated_at')
     
     fieldsets = (
         ('Informations générales', {
@@ -55,6 +48,10 @@ class RaceAdmin(admin.ModelAdmin):
         }),
         ('Détails de la course', {
             'fields': ('date', 'laps', 'distance', 'image')
+        }),
+        ('Dates', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
         }),
     )
 
@@ -78,12 +75,23 @@ class RaceDriverAdmin(admin.ModelAdmin):
 
 @admin.register(Bet)
 class BetAdmin(admin.ModelAdmin):
-    list_display = ('user', 'race', 'bet_type', 'selection', 'amount', 'status', 'created_at')
-    list_filter = ('status', 'bet_type')
+    list_display = ('id', 'user', 'race', 'bet_type', 'selection', 'amount', 'odds', 'potential_win', 'status', 'created_at')
+    list_filter = ('status', 'bet_type', 'created_at')
     search_fields = ('user__email', 'selection', 'race__name')
     list_per_page = 25
-    date_hierarchy = 'created_at'
+    readonly_fields = ('id', 'potential_win', 'created_at', 'updated_at')
     
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.select_related('user', 'race')
+    fieldsets = (
+        ('Informations du pari', {
+            'fields': ('id', 'user', 'race', 'bet_type', 'selection')
+        }),
+        ('Montants et cotes', {
+            'fields': ('amount', 'odds', 'potential_win')
+        }),
+        ('Statut', {
+            'fields': ('status',)
+        }),
+        ('Dates', {
+            'fields': ('created_at', 'updated_at')
+        }),
+    )
