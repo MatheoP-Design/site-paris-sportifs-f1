@@ -52,3 +52,4 @@ Les scripts `start.sh`, `start-backend.sh` et `setup.sh` détectent automatiquem
 
 Si aucun Python compatible n'est trouvé, vous verrez un message d'erreur avec des instructions pour installer la bonne version.
 
+

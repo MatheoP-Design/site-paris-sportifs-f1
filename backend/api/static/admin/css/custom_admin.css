@@ -1,0 +1,444 @@
+/* Thème personnalisé pour l'admin Django - Style F1 */
+
+/* Variables de couleurs du thème F1 */
+:root {
+    --f1-primary: #dc0000;
+    --f1-primary-hover: #b30000;
+    --f1-background: #0a0a0a;
+    --f1-card: #151515;
+    --f1-foreground: #e5e5e5;
+    --f1-secondary: #2a2a2a;
+    --f1-muted: #1f1f1f;
+    --f1-border: rgba(192, 192, 192, 0.15);
+    --f1-accent: #c0c0c0;
+}
+
+/* Override du body */
+body {
+    background-color: var(--f1-background) !important;
+    color: var(--f1-foreground) !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Header de l'admin */
+#header {
+    background: linear-gradient(135deg, var(--f1-primary) 0%, #b30000 100%) !important;
+    color: #ffffff !important;
+    border-bottom: 2px solid var(--f1-primary) !important;
+    box-shadow: 0 2px 8px rgba(220, 0, 0, 0.3) !important;
+}
+
+#header a:link,
+#header a:visited {
+    color: #ffffff !important;
+}
+
+#header a:hover {
+    color: var(--f1-accent) !important;
+}
+
+/* Branding */
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Navigation */
+#user-tools {
+    color: #ffffff !important;
+}
+
+#user-tools a {
+    color: #ffffff !important;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+#user-tools a:hover {
+    border-bottom-color: var(--f1-accent);
+}
+
+/* Sidebar */
+#content-related {
+    background-color: var(--f1-card) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 8px;
+}
+
+#content-related h3 {
+    background-color: var(--f1-secondary) !important;
+    color: var(--f1-foreground) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+}
+
+#content-related .module {
+    background-color: transparent !important;
+}
+
+#content-related a {
+    color: var(--f1-primary) !important;
+}
+
+#content-related a:hover {
+    color: var(--f1-primary-hover) !important;
+}
+
+/* Contenu principal */
+#content {
+    background-color: var(--f1-background) !important;
+}
+
+.module {
+    background-color: var(--f1-card) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.module h2,
+.module caption {
+    background: linear-gradient(135deg, var(--f1-secondary) 0%, var(--f1-muted) 100%) !important;
+    color: var(--f1-foreground) !important;
+    border-bottom: 2px solid var(--f1-primary) !important;
+    font-weight: 600;
+}
+
+.module table {
+    background-color: transparent !important;
+}
+
+.module th {
+    background-color: var(--f1-secondary) !important;
+    color: var(--f1-foreground) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+}
+
+.module td {
+    border-bottom: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+.module tr:hover {
+    background-color: var(--f1-muted) !important;
+}
+
+/* Formulaires */
+.form-row {
+    border-bottom: 1px solid var(--f1-border) !important;
+}
+
+label {
+    color: var(--f1-foreground) !important;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+    background-color: var(--f1-card) !important;
+    border: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+    border-radius: 4px;
+    padding: 8px 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--f1-primary) !important;
+    box-shadow: 0 0 0 2px rgba(220, 0, 0, 0.2) !important;
+    outline: none;
+}
+
+/* Boutons */
+.button,
+input[type="submit"],
+.submit-row input {
+    background: linear-gradient(135deg, var(--f1-primary) 0%, #b30000 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(220, 0, 0, 0.3);
+}
+
+.button:hover,
+input[type="submit"]:hover,
+.submit-row input:hover {
+    background: linear-gradient(135deg, #b30000 0%, #8f0000 100%) !important;
+    box-shadow: 0 4px 8px rgba(220, 0, 0, 0.4);
+    transform: translateY(-1px);
+}
+
+.button.default,
+input[type="submit"].default,
+.submit-row input.default {
+    background: linear-gradient(135deg, var(--f1-primary) 0%, #b30000 100%) !important;
+}
+
+/* Boutons secondaires */
+.button-secondary,
+a.button {
+    background-color: var(--f1-secondary) !important;
+    color: var(--f1-foreground) !important;
+    border: 1px solid var(--f1-border) !important;
+}
+
+.button-secondary:hover,
+a.button:hover {
+    background-color: var(--f1-muted) !important;
+    border-color: var(--f1-primary) !important;
+}
+
+/* Messages */
+.messagelist li {
+    background-color: var(--f1-card) !important;
+    border-left: 4px solid var(--f1-primary) !important;
+    color: var(--f1-foreground) !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.messagelist li.success {
+    border-left-color: #4caf50 !important;
+}
+
+.messagelist li.error {
+    border-left-color: var(--f1-primary) !important;
+}
+
+.messagelist li.warning {
+    border-left-color: #ffa500 !important;
+}
+
+.messagelist li.info {
+    border-left-color: #00d4ff !important;
+}
+
+/* Liens */
+a:link,
+a:visited {
+    color: var(--f1-primary) !important;
+}
+
+a:hover {
+    color: var(--f1-primary-hover) !important;
+}
+
+a:active {
+    color: #8f0000 !important;
+}
+
+/* Tableaux */
+thead th {
+    background-color: var(--f1-secondary) !important;
+    color: var(--f1-foreground) !important;
+    border-bottom: 2px solid var(--f1-primary) !important;
+}
+
+tbody tr {
+    background-color: var(--f1-card) !important;
+}
+
+tbody tr:hover {
+    background-color: var(--f1-muted) !important;
+}
+
+tbody td {
+    border-bottom: 1px solid var(--f1-border) !important;
+    color: var(--f1-foreground) !important;
+}
+
+/* Filtres */
+#changelist-filter {
+    background-color: var(--f1-card) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 8px;
+}
+
+#changelist-filter h2 {
+    background-color: var(--f1-secondary) !important;
+    color: var(--f1-foreground) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+}
+
+#changelist-filter h3 {
+    color: var(--f1-foreground) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+}
+
+#changelist-filter li {
+    border-bottom: 1px solid var(--f1-border) !important;
+}
+
+#changelist-filter a {
+    color: var(--f1-foreground) !important;
+}
+
+#changelist-filter a:hover {
+    color: var(--f1-primary) !important;
+    background-color: var(--f1-muted) !important;
+}
+
+#changelist-filter li.selected a {
+    color: var(--f1-primary) !important;
+    font-weight: 600;
+}
+
+/* Pagination */
+.paginator {
+    background-color: var(--f1-card) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.paginator a {
+    background-color: var(--f1-secondary) !important;
+    color: var(--f1-foreground) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin: 0 2px;
+    transition: all 0.2s;
+}
+
+.paginator a:hover {
+    background-color: var(--f1-primary) !important;
+    color: #ffffff !important;
+    border-color: var(--f1-primary) !important;
+}
+
+.paginator .this-page {
+    background-color: var(--f1-primary) !important;
+    color: #ffffff !important;
+    border-color: var(--f1-primary) !important;
+}
+
+/* Checkboxes et radio */
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: var(--f1-primary) !important;
+}
+
+/* Selects */
+select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23dc0000' d='M6 9L1 4h10z'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 8px center !important;
+    padding-right: 30px !important;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+    background-color: var(--f1-card) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+    padding: 10px 15px;
+    border-radius: 8px 8px 0 0;
+}
+
+.breadcrumbs a {
+    color: var(--f1-primary) !important;
+}
+
+.breadcrumbs a:hover {
+    color: var(--f1-primary-hover) !important;
+}
+
+/* Actions */
+#changelist-actions {
+    background-color: var(--f1-card) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+/* Erreurs de formulaire */
+.errorlist {
+    background-color: rgba(220, 0, 0, 0.1) !important;
+    border-left: 4px solid var(--f1-primary) !important;
+    color: var(--f1-primary) !important;
+    padding: 10px;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+/* Help text */
+.help {
+    color: var(--f1-accent) !important;
+    font-size: 0.9em;
+}
+
+/* Readonly fields */
+.readonly {
+    background-color: var(--f1-muted) !important;
+    color: var(--f1-accent) !important;
+}
+
+/* Inline forms */
+.inline-group {
+    background-color: var(--f1-card) !important;
+    border: 1px solid var(--f1-border) !important;
+    border-radius: 8px;
+}
+
+.inline-group h2 {
+    background-color: var(--f1-secondary) !important;
+    color: var(--f1-foreground) !important;
+    border-bottom: 1px solid var(--f1-border) !important;
+}
+
+/* Scrollbar personnalisée */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--f1-muted);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(220, 0, 0, 0.3);
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(220, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #header {
+        padding: 10px !important;
+    }
+    
+    #branding h1 {
+        font-size: 18px !important;
+    }
+    
+    .module {
+        margin: 10px 0 !important;
+    }
+}
+

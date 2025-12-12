@@ -108,3 +108,4 @@ fi
 
 echo -e "\n${BLUE}✅ Diagnostic terminé${NC}\n"
 
+
